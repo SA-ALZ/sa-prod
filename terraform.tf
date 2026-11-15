@@ -7,7 +7,7 @@ terraform {
     }
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 4.0"
+      version = "~> 4.81"
     }
     azapi = {
       source  = "Azure/azapi"
@@ -38,6 +38,9 @@ provider "azapi" {
 provider "azurerm" {
   resource_provider_registrations = "none"
   features {
+    enhanced_validation {
+      locations = false
+    }
     resource_group {
       prevent_deletion_if_contains_resources = false
     }
@@ -49,6 +52,9 @@ provider "azurerm" {
   alias                           = "management"
   subscription_id                 = var.subscription_ids["management"]
   features {
+    enhanced_validation {
+      locations = false
+    }
     resource_group {
       prevent_deletion_if_contains_resources = false
     }
@@ -60,6 +66,9 @@ provider "azurerm" {
   alias                           = "connectivity"
   subscription_id                 = var.subscription_ids["connectivity"]
   features {
+    enhanced_validation {
+      locations = false
+    }
     resource_group {
       prevent_deletion_if_contains_resources = false
     }
